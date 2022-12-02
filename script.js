@@ -281,7 +281,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const DOMbotonVaciar = document.querySelector('#button-delete-all');
 
     // Funciones
-
+    function togglePopup() {
+        document.getElementById('popup-1').classList.toggle('active')
+        // content.push(evento.target.getAttribute('mark'))
+    }
     /**
     * Dibuja todos los productos a partir de la base de datos. No confundir con el cart
     */
@@ -289,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         DB.forEach((item) => {
             // Estructura
             const miNodo = document.createElement('div');
-            miNodo.classList.add('card', 'col-sm-4');
+            miNodo.classList.add('card');
             // Body
             const miNodoCardBody = document.createElement('div');
             miNodoCardBody.classList.add('card-body');
@@ -297,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const miNodoTitle = document.createElement('h5');
             miNodoTitle.classList.add('card-title');
             miNodoTitle.textContent = item.title;
+
             // Imagen
             const miNodoImagen = document.createElement('img');
             miNodoImagen.classList.add('img-fluid');
@@ -311,6 +315,72 @@ document.addEventListener('DOMContentLoaded', () => {
             miNodoBoton.textContent = 'Add to List';
             miNodoBoton.setAttribute('marcador', item.id);
             miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
+
+
+
+            // const cardPopup = document.createElement('div');
+            // cardPopup.classList.add('cardPopup');
+            // DOMitems.appendChild(cardPopup);
+
+            // const miNodoCardPopup = document.createElement('div');
+            // miNodoCardPopup.classList.add('card-body');
+            // cardPopup.appendChild(miNodoCardPopup);
+
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.id = 'popup-1'
+            miNodo.appendChild(popup);
+
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            popup.appendChild(overlay);
+
+            const content = document.createElement('div');
+            content.classList.add('content');
+            popup.appendChild(content);
+
+            const closeBtn = document.createElement('button');
+            closeBtn.classList.add('close-btn');
+            closeBtn.textContent = 'X';
+            // closeBtn.onclick = togglePopup();
+            closeBtn.addEventListener('click', togglePopup);
+            content.append(closeBtn);
+            // miNodoBoton.setAttribute('marcador', item.id);
+
+            // const h2Popup = document.createElement('h2');
+            // h2Popup.classList.add('h2-popup');
+            // h2Popup.id = 'h2-popup';
+            // h2Popup.textContent = item.title;
+            // content.append(h2Popup);
+
+            // const miNodoTitle = document.createElement('h5');
+            // miNodoTitle.classList.add('card-title');
+            // miNodoTitle.textContent = item.title;
+
+            const h2Popup = document.createElement('h2');
+            h2Popup.classList.add('h2-popup');
+            h2Popup.textContent = item.title;
+            content.append(h2Popup);
+            // console.log(item.title[0])
+
+            const pPopup = document.createElement('p');
+            pPopup.classList.add('p-popup');
+            pPopup.id = 'p-opup';
+            pPopup.textContent = item.description;
+            content.append(pPopup);
+
+
+
+            const showPopup = document.createElement('button');
+            showPopup.classList.add('show-more-btn');
+            showPopup.textContent = 'Show More';
+            // showPopup.onclick = togglePopup();
+            showPopup.addEventListener('click', togglePopup);
+            miNodoCardBody.appendChild(showPopup);
+            // showPopup.setAttribute('marcador', item.id);
+
+            // showPopup.addEventListener('click', togglePopup);
+
             // Insertamos
             miNodoCardBody.appendChild(miNodoImagen);
             miNodoCardBody.appendChild(miNodoTitle);
