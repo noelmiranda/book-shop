@@ -65,12 +65,6 @@ textInputFind.id = "text-find";
 textInputFind.classList = "text-find";
 inputFind.append(textInputFind);
 
-// const input = document.createElement('input');
-// inputFind.append(input)
-
-// const button = document.createElement('button');
-// button.innerText = 'Find';
-// inputFind.append(button);
 
 //////////////////MAIN////////////////
 
@@ -83,19 +77,21 @@ const mainContainer = document.createElement('div');
 main.append(mainContainer);
 mainContainer.id = "main-container";
 mainContainer.classList = "main-container";
-// mainContainer.style = "background: green";
+
 
 const items = document.createElement('div');
 mainContainer.append(items);
 items.id = "items";
 items.classList = "items";
-// items.style = "background: red";
+
+
+
 
 const aside = document.createElement('aside');
 mainContainer.append(aside);
 aside.id = "aside";
 aside.classList = "aside";
-// aside.style = "background: black";
+
 
 const cartH2 = document.createElement('h2');
 aside.append(cartH2);
@@ -127,16 +123,22 @@ button.classList = "button-delete-all";
 aside.append(button);
 
 
+const buttonOrder = document.createElement('button');
+buttonOrder.id = "button-complete-order";
+buttonOrder.classList = "button-complete-order";
+aside.append(buttonOrder);
 
-
-
-
+const a = document.createElement("a");
+    a.setAttribute("href", "./order.html");
+    let aTexto = document.createTextNode("Complete Order");
+    a.appendChild(aTexto);
+    buttonOrder.append(a)
 
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Variables
+
     const DB = [
         {
             "id": 1,
@@ -227,36 +229,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const DOMtotal = document.querySelector('#total');
     const DOMbotonVaciar = document.querySelector('#button-delete-all');
 
-    // Funciones
+
+
     function togglePopup() {
         document.getElementById('popup-1').classList.toggle('active')
         // content.push(evento.target.getAttribute('mark'))
     }
-    /**
-    * Dibuja todos los productos a partir de la base de datos. No confundir con el cart
-    */
+
     function renderizarProductos() {
         DB.forEach((item) => {
-            // Estructura
+
             const miNodo = document.createElement('div');
             miNodo.classList.add('card');
-            // Body
+
             const miNodoCardBody = document.createElement('div');
             miNodoCardBody.classList.add('card-body');
-            // Titulo
+
             const miNodoTitle = document.createElement('h5');
             miNodoTitle.classList.add('card-title');
             miNodoTitle.textContent = item.title;
 
-            // Imagen
+
             const miNodoImagen = document.createElement('img');
             miNodoImagen.classList.add('img-fluid');
             miNodoImagen.setAttribute('src', item.imageLink);
-            // Precio
+
             const miNodoPrecio = document.createElement('p');
             miNodoPrecio.classList.add('card-text');
             miNodoPrecio.textContent = `${item.price}${currency}`;
-            // Boton
+
             const miNodoBoton = document.createElement('button');
             miNodoBoton.classList.add('btn-add');
             miNodoBoton.textContent = 'Add to List';
@@ -264,14 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
             miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
 
 
-
-            // const cardPopup = document.createElement('div');
-            // cardPopup.classList.add('cardPopup');
-            // DOMitems.appendChild(cardPopup);
-
-            // const miNodoCardPopup = document.createElement('div');
-            // miNodoCardPopup.classList.add('card-body');
-            // cardPopup.appendChild(miNodoCardPopup);
 
             const popup = document.createElement('div');
             popup.classList.add('popup');
@@ -289,26 +282,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const closeBtn = document.createElement('button');
             closeBtn.classList.add('close-btn');
             closeBtn.textContent = 'X';
-            // closeBtn.onclick = togglePopup();
             closeBtn.addEventListener('click', togglePopup);
             content.append(closeBtn);
-            // miNodoBoton.setAttribute('marcador', item.id);
-
-            // const h2Popup = document.createElement('h2');
-            // h2Popup.classList.add('h2-popup');
-            // h2Popup.id = 'h2-popup';
-            // h2Popup.textContent = item.title;
-            // content.append(h2Popup);
-
-            // const miNodoTitle = document.createElement('h5');
-            // miNodoTitle.classList.add('card-title');
-            // miNodoTitle.textContent = item.title;
 
             const h2Popup = document.createElement('h2');
             h2Popup.classList.add('h2-popup');
             h2Popup.textContent = item.title;
             content.append(h2Popup);
-            // console.log(item.title[0])
+
 
             const pPopup = document.createElement('p');
             pPopup.classList.add('p-popup');
@@ -321,14 +302,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const showPopup = document.createElement('button');
             showPopup.classList.add('show-more-btn');
             showPopup.textContent = 'Show More';
-            // showPopup.onclick = togglePopup();
             showPopup.addEventListener('click', togglePopup);
+
+
+
             miNodoCardBody.appendChild(showPopup);
-            // showPopup.setAttribute('marcador', item.id);
-
-            // showPopup.addEventListener('click', togglePopup);
-
-            // Insertamos
             miNodoCardBody.appendChild(miNodoImagen);
             miNodoCardBody.appendChild(miNodoTitle);
             miNodoCardBody.appendChild(miNodoPrecio);
@@ -338,102 +316,91 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /**
-    * Evento para añadir un producto al cart de la compra
-    */
-    function anyadirProductoAlCarrito(evento) {
-        // Anyadimos el Nodo a nuestro cart
-        cart.push(evento.target.getAttribute('marcador'))
-        // Actualizamos el cart
-        renderizarCarrito();
 
+    function anyadirProductoAlCarrito(evento) {
+
+        cart.push(evento.target.getAttribute('marcador'))
+        renderizarCarrito();
     }
 
-    /**
-    * Dibuja todos los productos guardados en el cart
-    */
     function renderizarCarrito() {
-        // Vaciamos todo el html
+
         DOMcarrito.textContent = '';
-        // Quitamos los duplicados
+
         const carritoSinDuplicados = [...new Set(cart)];
-        // Generamos los Nodos a partir de cart
+
         carritoSinDuplicados.forEach((item) => {
-            // Obtenemos el item que necesitamos de la variable base de datos
+
             const miItem = DB.filter((itemBaseDatos) => {
-                // ¿Coincide las id? Solo puede existir un caso
+
                 return itemBaseDatos.id === parseInt(item);
             });
-            // Cuenta el número de veces que se repite el producto
+
             const numeroUnidadesItem = cart.reduce((total, itemId) => {
-                // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
+
                 return itemId === item ? total += 1 : total;
             }, 0);
-            // Creamos el nodo del item del cart
+
             const miNodo = document.createElement('li');
             miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
             miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].title} - ${miItem[0].price}${currency}`;
-            // Boton de borrar
+
             const miBoton = document.createElement('button');
             miBoton.classList.add('btn-close');
             miBoton.textContent = 'X';
             miBoton.style.marginLeft = '1rem';
             miBoton.dataset.item = item;
             miBoton.addEventListener('click', borrarItemCarrito);
-            // Mezclamos nodos
+
             miNodo.appendChild(miBoton);
             DOMcarrito.appendChild(miNodo);
         });
-        // Renderizamos el precio total en el HTML
+
         DOMtotal.textContent = calcularTotal();
     }
 
-    /**
-    * Evento para borrar un elemento del cart
-    */
+
     function borrarItemCarrito(evento) {
-        // Obtenemos el producto ID que hay en el boton pulsado
+
         const id = evento.target.dataset.item;
-        // Borramos todos los productos
         cart = cart.filter((carritoId) => {
             return carritoId !== id;
         });
-        // volvemos a renderizar
         renderizarCarrito();
     }
 
-    /**
-     * Calcula el precio total teniendo en cuenta los productos repetidos
-     */
     function calcularTotal() {
-        // Recorremos el array del cart
+
         return cart.reduce((total, item) => {
-            // De cada elemento obtenemos su precio
+
             const miItem = DB.filter((itemBaseDatos) => {
                 return itemBaseDatos.id === parseInt(item);
             });
-            // Los sumamos al total
             return total + miItem[0].price;
         }, 0).toFixed(2);
     }
 
-    /**
-    * Varia el cart y vuelve a dibujarlo
-    */
     function vaciarCarrito() {
-        // Limpiamos los productos guardados
+
         cart = [];
-        // Renderizamos los cambios
+
         renderizarCarrito();
     }
 
-    // Eventos
+
+
     DOMbotonVaciar.addEventListener('click', vaciarCarrito);
 
-    // Inicio
+
+
+
+
     renderizarProductos();
     renderizarCarrito();
+
 });
+
+
 
 //////////////////FOOTER////////////////
 const footer = document.createElement('footer');
