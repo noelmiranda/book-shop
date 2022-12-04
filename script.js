@@ -128,60 +128,7 @@ aside.append(button);
 
 
 
-//////////////////FOOTER////////////////
-const footer = document.createElement('footer');
-body.append(footer);
-footer.id = "footer";
-footer.classList = "footer";
 
-
-
-const brandFooter = document.createElement('div');
-footer.append(brandFooter);
-brandFooter.id = "brand-footer";
-brandFooter.classList = "brand-footer";
-// brandFooter.style = "background: blue";
-
-const textBrandFooter = document.createElement('h2');
-brandFooter.append(textBrandFooter);
-textBrandFooter.id = "brand-footer-logo";
-textBrandFooter.classList = "brand-footer-logo";
-textBrandFooter.innerText = "BooksShop";
-
-const copywriteContainer = document.createElement('div');
-footer.append(copywriteContainer);
-copywriteContainer.id = "copywrite-container";
-copywriteContainer.classList = "copywrite-container";
-
-
-const textCopywrite = document.createElement('h6');
-textCopywrite.id = "text-copywrite";
-textCopywrite.classList = "text-copywrite";
-textCopywrite.innerText = '@2022 BookShop';
-copywriteContainer.append(textCopywrite);
-
-const mediaFooter = document.createElement('div');
-footer.append(mediaFooter);
-mediaFooter.id = "media-footer";
-mediaFooter.classList = "media-footer";
-mediaFooter.style = "background: blue";
-
-
-
-const mediaFooterMenu = document.createElement('ul');
-mediaFooterMenu.id = "media-footer-menu";
-mediaFooterMenu.classList = "media-footer-menu";
-mediaFooter.append(mediaFooterMenu);
-
-const footerItems = ['Facebook', 'Instagram', 'Twitter']
-
-footerItems.forEach(item => {
-    const li = document.createElement("li");
-    li.id = "footer-item";
-    li.classList = "footer-item";
-    li.append(document.createTextNode(item));
-    mediaFooterMenu.append(li);
-})
 
 
 
@@ -487,3 +434,57 @@ document.addEventListener('DOMContentLoaded', () => {
     renderizarProductos();
     renderizarCarrito();
 });
+
+//////////////////FOOTER////////////////
+const footer = document.createElement('footer');
+body.append(footer);
+footer.id = "footer";
+footer.classList = "footer";
+
+
+
+const brandFooter = document.createElement('div');
+footer.append(brandFooter);
+brandFooter.id = "brand-footer";
+brandFooter.classList = "brand-footer";
+// brandFooter.style = "background: blue";
+
+const textBrandFooter = document.createElement('h2');
+brandFooter.append(textBrandFooter);
+textBrandFooter.id = "brand-footer-logo";
+textBrandFooter.classList = "brand-footer-logo";
+textBrandFooter.innerText = "BooksShop";
+
+const copywriteContainer = document.createElement('div');
+footer.append(copywriteContainer);
+copywriteContainer.id = "copywrite-container";
+copywriteContainer.classList = "copywrite-container";
+
+
+const textCopywrite = document.createElement('h6');
+textCopywrite.id = "text-copywrite";
+textCopywrite.classList = "text-copywrite";
+textCopywrite.innerText = '@2022 BookShop';
+copywriteContainer.append(textCopywrite);
+
+const mediaFooter = document.createElement('div');
+footer.append(mediaFooter);
+mediaFooter.id = "media-footer";
+mediaFooter.classList = "media-footer";
+
+
+
+const mediaFooterMenu = document.createElement('ul');
+mediaFooterMenu.id = "media-footer-menu";
+mediaFooterMenu.classList = "media-footer-menu";
+mediaFooter.append(mediaFooterMenu);
+
+const footerItems = ['Facebook', 'Instagram', 'Twitter']
+
+footerItems.forEach(item => {
+    const li = document.createElement("li");
+    li.id = "footer-item";
+    li.classList = "footer-item";
+    li.append(document.createTextNode(item));
+    mediaFooterMenu.append(li);
+})

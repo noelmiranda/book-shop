@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./order.css">
+    <title>Order Page</title>
+</head>
+<body>
+    <main>
+		<form action="" class="form" id="form">
+
+            <div class="form__field" id="grupo__firstname">
+				<label for="firstname" class="form__label">Name</label>
+				<div class="form__field-input">
+					<input type="text" class="form__input" name="firstname" id="firstname" placeholder="Enter your name">
+					<i class="form__validation"></i>
+				</div>
+				<p class="form__input-error">The length not less than 4 symbols, strings only, without spaces.</p>
+			</div>
+
+            <div class="form__field" id="grupo__surname">
+				<label for="surname" class="form__label">Surname</label>
+				<div class="form__field-input">
+					<input type="text" class="form__input" name="surname" id="surname" placeholder="Enter your surname">
+					<i class="form__validation"></i>
+				</div>
+				<p class="form__input-error">The length not less than 5 symbols, strings only, without spaces.</p>
+			</div>
+            <div class="form__field" id="grupo__deliverydate">
+				<label for="deliverydate" class="form__label">Delivery date</label>
+				<div class="form__field-input">
+					<input type="date" class="form__input" name="deliverydate" id="deliverydate">
+					<i class="form__validation"></i>
+				</div>
+				<p class="form__input-error">The length not less than 5 symbols, strings only, without spaces.</p>
+			</div>
+
+            <div class="form__field" id="grupo__street">
+				<label for="street" class="form__label">Street</label>
+				<div class="form__field-input">
+					<input type="text" class="form__input" name="street" id="street" placeholder="Enter your street name">
+					<i class="form__validation"></i>
+				</div>
+				<p class="form__input-error">The length not less than 5 symbols, the numbers are allowed.</p>
+			</div>
+            <div class="form__field" id="grupo__housenumber">
+				<label for="housenumber" class="form__label">House number</label>
+				<div class="form__field-input">
+					<input type="text" class="form__input" name="housenumber" id="housenumber" placeholder="Enter your house number">
+					<i class="form__validation"></i>
+				</div>
+				<p class="form__input-error">Positive numbers only.</p>
+			</div>
+            <div class="form__field" id="grupo__flatnumber">
+				<label for="flatnumber" class="form__label">Flat number</label>
+				<div class="form__field-input">
+					<input type="text" class="form__input" name="flatnumber" id="flatnumber" placeholder="Enter your flat number">
+					<i class="form__validation"></i>
+				</div>
+				<p class="form__input-error">Positive numbers only, the dash symbol is allowed.</p>
+			</div>
+            <div class="form__field" id="grupo__paymenttype">
+				<fieldset>
+                    <legend>Payment type:</legend>
+                    <div>
+                      <input type="radio" id="cash" name="payment" value="payment"
+                             checked required>
+                      <label for="cash">Cash</label>
+                    </div>
+
+                    <div>
+                      <input type="radio" id="card" name="payment" value="payment">
+                      <label for="card">Card</label>
+                    </div>
+
+                </fieldset>
+			</div>
+
+            <fieldset>
+                <legend>Choose 2 gifts: (optional)</legend>
+
+                <div>
+                  <input type="checkbox" class="gifts" id="pack" name="gifts">
+                  <label for="pack">Pack as a gift</label>
+                </div>
+                <div>
+                  <input type="checkbox" class="gifts" id="postcard" name="gifts">
+                  <label for="postcard">Add postcard</label>
+                </div>
+                <div>
+                  <input type="checkbox" class="gifts" id="discount" name="gifts">
+                  <label for="discount">Provide 2% discount to the next time</label>
+                </div>
+
+                <div>
+                  <input type="checkbox" class="gifts" id="pen" name="gifts">
+                  <label for="pen">Branded pen or pencil</label>
+                </div>
+            </fieldset>
+
+
+			<div class="form__mensaje" id="form__mensaje">
+				<p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Please fill in all the fields. </p>
+			</div>
+
+			<div class="form__field form__field-btn-enviar">
+				<button type="submit" class="form__btn" id="form__btn">Complete order</button>
+				<p class="form__mensaje-exito" id="form__mensaje-exito">Your order has been completed successfully!</p>
+			</div>
+		</form>
+	</main>
+
+    <script src="./order.js"></script>
+</body>
+</html>
